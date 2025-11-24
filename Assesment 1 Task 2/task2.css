@@ -1,0 +1,214 @@
+/* =========================================
+   TASK 2: watch.it
+   ========================================= */
+
+/* 1. CSS VARIABLES & SPEC CONFIGURATION */
+:root {
+    /* FONTS */
+    --font-heading: 'Teko', sans-serif;
+    --font-body: 'Lato', sans-serif;
+
+    /* COLORS (From your palette) */
+    --col-bg: #070410;       /* Deep Black Background */
+    --col-card: #231651;     /* Deep Purple Card */
+    --col-accent: #EEF36A;   /* Neon Yellow Buttons/Logo */
+    --col-hover: #4DCCBD;    /* Teal Hover */
+    --col-text: #FFFFFF;     
+    --col-nav: #e0e0e0;      
+
+    /* SPACING (Default: Mobile) */
+    --spacing-small: 16px;
+    --spacing-large: 16px;
+
+    /* FONT SIZES (Default: Mobile) */
+    --fs-header: 2em;
+}
+
+/* =========================================
+   2. BREAKPOINTS & DYNAMIC VALUES
+   ========================================= */
+
+/* TABLET (720px - 1024px) */
+@media (min-width: 720px) {
+    :root {
+        --spacing-small: 16px;
+        --spacing-large: 32px;
+        --fs-header: 3em; 
+    }
+}
+
+/* DESKTOP (1024px +) */
+@media (min-width: 1024px) {
+    :root {
+        --spacing-small: 16px;
+        --spacing-large: 48px;
+        --fs-header: 3em; 
+    }
+}
+
+/* =========================================
+   3. GLOBAL RESET & TYPOGRAPHY
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--col-bg);
+    color: var(--col-text);
+    font-family: var(--font-body);
+}
+
+h2, .logo, .btn, .main-nav a, .search-box {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+/* =========================================
+   4. HEADER
+   ========================================= */
+.site-header {
+    background-color: var(--col-bg);
+    padding: var(--spacing-small) 0;
+    font-size: var(--fs-header);
+    border-bottom: 1px solid #222;
+}
+
+.header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-small);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 600;
+    color: var(--col-accent);
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    gap: var(--spacing-large); 
+}
+
+.main-nav a {
+    color: var(--col-nav);
+    text-decoration: none;
+    font-size: 0.5em; 
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover { color: var(--col-hover); }
+
+.search-box {
+    font-size: 0.5em;
+    cursor: pointer;
+}
+
+/* Mobile Tweak: Hide nav on very small screens */
+@media (max-width: 600px) {
+    .main-nav { display: none; } 
+}
+
+/* =========================================
+   5. MAIN CONTENT LAYOUT
+   ========================================= */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-large);
+}
+
+.movie-grid {
+    display: grid;
+    gap: var(--spacing-large);
+    grid-template-columns: 1fr; /* Mobile Default */
+}
+
+/* =========================================
+   6. MOVIE CARDS
+   ========================================= */
+.movie-card {
+    background-color: var(--col-card);
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em; /* Spec requirement */
+    border-radius: var(--spacing-small);
+    overflow: hidden; /* Ensures image corners round with the card */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Image handling */
+.card-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Ensures image covers area without stretching */
+    display: block;
+}
+
+.card-content {
+    padding: var(--spacing-small);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card h2 {
+    color: var(--col-accent);
+    margin-bottom: var(--spacing-small);
+    line-height: 1.1;
+    font-size: 1.2em;
+}
+
+.movie-card p {
+    font-size: 0.7em; 
+    margin-bottom: var(--spacing-small);
+    line-height: 1.4;
+    color: #e0e0e0;
+    flex-grow: 1; 
+}
+
+/* =========================================
+   7. BUTTONS
+   ========================================= */
+.btn {
+    display: block;
+    width: 100%;
+    background-color: var(--col-accent);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    
+    font-size: 1.5rem; 
+    padding: var(--spacing-small);
+    border-radius: var(--spacing-small);
+    
+    margin-top: auto;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--col-hover);
+}
+
+/* =========================================
+   8. GRID RESPONSIVENESS (Media Queries)
+   ========================================= */
+
+/* Tablet: 2 Columns */
+@media (min-width: 720px) {
+    .movie-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Desktop: 3 Columns */
+@media (min-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
