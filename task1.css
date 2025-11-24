@@ -1,0 +1,219 @@
+/* =========================================
+   TASK 1: ERASED TAPES (STRICT SPEC)
+   ========================================= */
+
+/* 1. VARIABLE DEFINITIONS */
+:root {
+    /* FONTS */
+    --font-heading: 'Protest Guerrilla', sans-serif;
+    --font-body: 'Josefin Sans', sans-serif;
+
+    /* COLORS */
+    --color-page-bg: #e9e9e9;
+    --color-content-bg: #ffffff;
+    --color-footer-bg: #14181d;
+    --color-text: #000000;
+
+    /* DYNAMIC SPACING (Default: Small Mobile < 540px) */
+    --spacing: 12px;
+}
+
+/* =========================================
+   2. MEDIA QUERIES (BREAKPOINTS & SPACING)
+   ========================================= */
+
+/* Large Mobile (540px and above) */
+@media (min-width: 540px) {
+    :root { --spacing: 20px; }
+}
+
+/* Tablet (720px and above) */
+@media (min-width: 720px) {
+    :root { --spacing: 30px; }
+}
+
+/* Desktop (1024px and above) */
+@media (min-width: 1024px) {
+    :root { --spacing: 50px; }
+}
+
+/* =========================================
+   3. GENERAL STYLES
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* Page Wrapper ensures footer sticks to bottom if content is short */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   4. HEADER & LOGO
+   ========================================= */
+.site-header {
+    padding: var(--spacing);
+    display: flex;
+    justify-content: center; /* Centered on Mobile */
+}
+
+.logo-box {
+    background-color: #000;
+    color: #fff;
+    font-family: var(--font-heading);
+    /* SPEC: Mobile/Tablet width = 80px */
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 5px;
+}
+
+/* =========================================
+   5. MAIN CONTENT
+   ========================================= */
+.content-container {
+    background-color: var(--color-content-bg);
+    margin: 0 var(--spacing); /* Margins on sides */
+    padding: var(--spacing);  /* Padding inside */
+    margin-bottom: var(--spacing);
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+/* SPEC: Headings 3x default size (approx) */
+h1 {
+    font-size: 2.5rem; 
+    margin-bottom: var(--spacing);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: calc(var(--spacing) * 1.5);
+    margin-bottom: var(--spacing);
+}
+
+p {
+    margin-bottom: var(--spacing);
+    font-size: 1rem;
+}
+
+/* ALBUM GRID (For the images) */
+.album-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
+}
+
+/* =========================================
+   6. SIDEBAR & AUTHOR
+   ========================================= */
+.author-box {
+    background-color: #f4f4f4; /* Light grey box for author */
+    padding: var(--spacing);
+    text-align: center;
+}
+
+.author-img {
+    /* SPEC: Author photo 200px wide */
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 auto var(--spacing) auto;
+}
+
+/* =========================================
+   7. DESKTOP LAYOUT (1024px+)
+   ========================================= */
+@media (min-width: 1024px) {
+    
+    .page-wrapper {
+        align-items: center; /* Centers the max-width content */
+    }
+
+    .site-header, .content-container, .site-footer {
+        width: 100%;
+        max-width: 1200px; /* Constrain width on large screens */
+    }
+
+    /* HEADER: Left aligned on desktop */
+    .site-header {
+        justify-content: flex-start;
+    }
+
+    /* SPEC: Logo 200px on desktop */
+    .logo-box {
+        width: 200px;
+        height: auto;
+        padding: 15px;
+        font-size: 1.5rem;
+    }
+
+    /* SPEC: Title much larger */
+    h1 { font-size: 5rem; }
+
+    /* LAYOUT: Grid creates Sidebar */
+    .layout-grid {
+        display: grid;
+        grid-template-columns: 3fr 1fr; /* 75% Text, 25% Sidebar */
+        gap: var(--spacing);
+    }
+
+    /* SPEC: First paragraph larger */
+    .lead-paragraph {
+        font-size: 1.4rem;
+        font-weight: 300;
+    }
+
+    .author-box {
+        text-align: left;
+        background: transparent;
+        padding: 0;
+        margin-top: 0;
+    }
+    
+    .author-img {
+        margin: 0 0 var(--spacing) 0; /* Align left */
+    }
+
+    /* 3 columns for images on desktop */
+    .album-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* =========================================
+   8. FOOTER
+   ========================================= */
+.site-footer {
+    background-color: var(--color-footer-bg);
+    color: #fff;
+    text-align: center;
+    padding: var(--spacing);
+    width: 100%;
+    margin-top: auto;
+}
